@@ -268,7 +268,7 @@ jobs:
             cd backend
             npm cache clean --force
             rm -rf node_modules
-            npm install
+            npm install –save-dev cross-env
             npm audit fix --force
             npm run migrations > migrations_dump.txt
             cat migrations_dump.txt
