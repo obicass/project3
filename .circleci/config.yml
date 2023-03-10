@@ -265,22 +265,22 @@ jobs:
 
       - run:
           name: Run migrations
-          command: |
-            cd backend
-            rm -rf node_modules
-            npm ci
-            npm audit fix --force
-            npm run migrations > migrations_dump.txt
-            cat migrations_dump.txt
-          
           # command: |
           #   cd backend
-          #   npm cache clean --force
           #   rm -rf node_modules
-          #   npm install –save-dev cross-env
+          #   npm ci
           #   npm audit fix --force
           #   npm run migrations > migrations_dump.txt
           #   cat migrations_dump.txt
+          
+          command: |
+            cd backend
+            npm cache clean --force
+            rm -rf node_modules
+            rm "backend/package-lock.json"
+            npm install
+            npm run migrations > migrations_dump.txt
+            cat migrations_dump.txt
       - run:
           name: Send migration status to kvdb.io
           command: |
